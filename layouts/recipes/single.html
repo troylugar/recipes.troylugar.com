@@ -1,0 +1,43 @@
+{{ define "main" }}
+<div class="container">
+  <div class="my-3">
+    <article>
+      <header class="text-center">
+        <h1 class="display-4">
+          <span class="text-gradient">{{ .Title }}</span>
+        </h1>
+        {{ $image := .Resources.GetMatch "featured_image" }}
+        {{ if ne $image nil }}
+        <figure>
+          <img src="{{ $image.RelPermalink }}" alt="featured image" style="max-width: 600px" class="mw-100 mb-3">
+        </figure>
+        {{ end }}
+      </header>
+      {{ .Content }}
+      <dl>
+        <dt>🔪 Prep Time</dt>
+        <dd>{{ .Params.prep_time }}</dd>
+        <dt>🔥 Cooking Time</dt>
+        <dd>{{ .Params.cooking_time }}</dd>
+        <dt>🥘 Produces</dt>
+        <dd>{{ .Params.produces }}</dd>
+      </dl>
+      <h1>Ingredients</h1>
+      <ul>
+        {{ range $val := .Params.ingredients }}
+        <li>{{ $val }}</li>
+        {{ end }}
+      </ul>
+      <h1>Steps</h1>
+      <ol>
+        {{ range $val := .Params.steps }}
+        <li>{{ $val }}</li>
+        {{ end }}
+      </ol>
+    </article>
+  </div>
+  <div id="comments" class="py-3">
+    {{ template "_internal/disqus.html" . }}
+  </div>
+</div>
+{{ end }}

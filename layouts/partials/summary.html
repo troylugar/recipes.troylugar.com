@@ -1,0 +1,24 @@
+<article class="row py-4 py-lg-3">
+  <div class="col-12 col-md-3">
+    {{ $image := .Resources.GetMatch "featured_image" }}
+    {{ if ne $image nil }}
+      <a href="{{ .RelPermalink }}">
+        <figure>
+          <img src="{{ $image.RelPermalink }}" alt="featured image" class="w-100 mb-3">
+        </figure>
+      </a>
+    {{ else }}
+      <img src="http://via.placeholder.com/400x300?text=No+image" class="mw-100" alt="no image">
+    {{ end }}
+  </div>
+  <div class="col-12 col-md-9">
+    <header>
+      <h3 class="text-display fw-normal"><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      {{ partial "metadata.html" . }}
+    </header>
+    <p>
+      {{ .Summary }} 
+      <a href="{{ .RelPermalink }}" class="read-more">Read more&hellip;</a>
+    </p>
+  </div>
+</article>

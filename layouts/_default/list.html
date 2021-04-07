@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="container">
+    <section class="my-3">
+      {{ $section := .CurrentSection.Name | title }}
+      {{ if ne $section .Title }}
+        <h1 class="text-display mt-4 mb-3 fw-normal">
+          {{ $section }}
+        </h1>
+      {{ end }}
+      {{ range .Pages.ByPublishDate.Reverse }}
+        {{ partial "summary.html" . }}
+      {{ end }}
+    </section>
+  </div>
+{{ end }}

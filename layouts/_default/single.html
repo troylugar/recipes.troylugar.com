@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="container">
+  <div class="my-3">
+    <div class="lead text-display">
+      {{ if ne .Section "" }}
+        {{ .CurrentSection.Name }}
+      {{ else }}
+        Uncategorized
+      {{ end }}
+    </div>
+    <article>
+      <header>
+        <h1 class="display-4">
+          <span class="text-gradient">{{ .Title }}</span>
+        </h1>
+      </header>
+      {{ .Content }}
+    </article>
+  </div>
+</div>
+{{ end }}
